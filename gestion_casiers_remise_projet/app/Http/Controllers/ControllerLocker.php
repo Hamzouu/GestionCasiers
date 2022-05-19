@@ -110,6 +110,14 @@ class ControllerLocker extends Controller
     {
         $locker = Locker::find($id);
 
+        $request->validate([
+            'nom_casier'=>'required',
+            'etage_casier'=>'required',
+            'site_casier'=>'required|',
+            'etage_casier'=>'required',
+            'infos_casier'=>'required',
+            'student_id'=>'required'
+        ]);
         //On effectue la correspondance des champs du formulaire avec ceux présents dans la base de données
         $locker->nom_casier=$request->input('nom_casier');
         $locker->etage_casier=$request->input('etage_casier');

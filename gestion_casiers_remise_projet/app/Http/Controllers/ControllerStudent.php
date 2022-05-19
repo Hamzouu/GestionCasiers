@@ -60,8 +60,15 @@ class ControllerStudent extends Controller
         // Fonction permettant de mettre à jour les informations d'un étudiant
         public function updateStudent(Request $request, $id)
         {
+
+            
             //On effectue la correspondance des champs du formulaire avec ceux présents dans la base de données
             $student = Student::find($id);
+            $request->validate([
+                'nom'=>'required',
+                'prenom'=>'required',
+                'classe'=>'required|'
+            ]);
             $student->nom=$request->input('nom');
             $student->prenom=$request->input('prenom');
             $student->classe=$request->input('classe');

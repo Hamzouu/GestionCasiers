@@ -6,6 +6,16 @@ Description de la page :  Cette page est la vue html de la page de création d'u
 --}}
 @extends('layouts.app')
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 @section('content')
     <h1>Ajouter Un élève</h1>
 
