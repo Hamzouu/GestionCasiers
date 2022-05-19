@@ -23,6 +23,12 @@ class ControllerStudent extends Controller
         // Fontion qui permet de stocker les données du formulaire d'ajout d'un élève
         public function storeStudent(Request $request)
         {    
+
+            $request->validate([
+                'nom'=>'required',
+                'prenom'=>'required',
+                'classe'=>'required|'
+            ]);
             //Stockage des informations du formulaire d'ajout d'élève
             Student::create([
                 'nom'=>$request->nom,

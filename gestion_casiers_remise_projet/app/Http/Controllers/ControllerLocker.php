@@ -46,7 +46,7 @@ class ControllerLocker extends Controller
     public function createNewLocker(Request $request)
     {
         //Validation des champs du formulaire
-        request()->validate([
+        $request->validate([
             'nom_casier' => ['required'],
             'etage_casier' => ['required'],
             'site_casier' => ['required'],
@@ -137,12 +137,12 @@ class ControllerLocker extends Controller
 
     //Fonction Permettant d'effectuer une recherche sur l'application
     //Ne fonctionne pas à l'heure actuelle
-    public function searchLocker()
+    /* public function searchLocker()
     {
   
         $searchLocker = Request::get('search');
         $lockers = Locker::where('nom','like','%'.$search.'%')->orderBy('id')->paginate(6);
         return view('',['lockers' => $lockers]);
       
-    }
+    } */
 }
