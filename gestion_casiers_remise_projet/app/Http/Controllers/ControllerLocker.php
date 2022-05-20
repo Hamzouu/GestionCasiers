@@ -46,7 +46,7 @@ class ControllerLocker extends Controller
     public function createNewLocker(Request $request)
     {
         //Validation des champs du formulaire
-        request()->validate([
+        $request->validate([
             'nom_casier' => ['required'],
             'etage_casier' => ['required'],
             'site_casier' => ['required'],
@@ -86,16 +86,6 @@ class ControllerLocker extends Controller
          return view('locker/lockerList', compact('allLockers'));
     }  
 
-   /*public function get_all_students()
-    {
-       $students = Student::all();
-       
-       return view('locker/create', [
-        'students' => $students
-        ]);    
-        dd($students);
-    }*/
-
     //Fonction permettant de récupérer l'étudiant à modifier et afficher le formulaire de modification avec les informations actuelles du casier
     public function showUpdateLockerForm($id)
     {
@@ -110,6 +100,14 @@ class ControllerLocker extends Controller
     {
         $locker = Locker::find($id);
 
+        $request->validate([
+            'nom_casier'=>'required',
+            'etage_casier'=>'required',
+            'site_casier'=>'required|',
+            'etage_casier'=>'required',
+            'infos_casier'=>'required',
+            'student_id'=>'required'
+        ]);
         //On effectue la correspondance des champs du formulaire avec ceux présents dans la base de données
         $locker->nom_casier=$request->input('nom_casier');
         $locker->etage_casier=$request->input('etage_casier');
@@ -137,12 +135,12 @@ class ControllerLocker extends Controller
 
     //Fonction Permettant d'effectuer une recherche sur l'application
     //Ne fonctionne pas à l'heure actuelle
-    public function searchLocker()
+    /* public function searchLocker()
     {
   
         $searchLocker = Request::get('search');
         $lockers = Locker::where('nom','like','%'.$search.'%')->orderBy('id')->paginate(6);
         return view('',['lockers' => $lockers]);
       
-    }
+    } */
 }
