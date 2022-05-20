@@ -53,11 +53,12 @@ Route::post('/locker/create', [ControllerLocker::class, 'createNewLocker']);
 //Route permettant d'aller sur le formulaire de modification d'un étudiant
 Route::get('/edit-student/{id}', [ControllerStudent::class, 'showUpdateStudentForm'])->name('student.FormUpdate');
 Route::get('/edit-locker/{id}', [ControllerLocker::class, 'showUpdateLockerForm'])->name('locker.FormUpdate');
+Route::get('update-dashboard/{id}', [ControllerLocker::class, 'showUpdateDashboardForm'])->name('dashboard.FormUpdate');
 
 //Route permettant de mettre à jour un étudiant
 Route::put('/update-student/{id}', [ControllerStudent::class, 'updateStudent'])->name('student.update');
+Route::put('/update-dashboard/{id}', [ControllerLocker::class, 'updateDashboardLocker'])->name('dashboard.update');
 Route::put('/update-locker/{id}', [ControllerLocker::class, 'updateLocker'])->name('locker.update');
-
 //DELETE
 
 //Route permettant de supprimer un étudiant

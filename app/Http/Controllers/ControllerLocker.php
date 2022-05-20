@@ -95,6 +95,14 @@ class ControllerLocker extends Controller
         return view('locker/updateLockerForm', ['locker' => $locker], ['students' => $students] );
     }
 
+    public function showUpdateDashboardForm($id)
+    {
+        $locker = Locker::findOrFail($id);
+        $students = Student::all();
+
+        return view('locker/updateAssignementLocker', ['locker' => $locker], ['students' => $students] );
+    }
+
     //Fonction permettant de mettre à jour les champs d'un casier en fonction des modifications entrées dans le formulaire
     public function updateLocker(Request $request, $id)
     {
@@ -106,18 +114,34 @@ class ControllerLocker extends Controller
             'site_casier'=>'required|',
             'etage_casier'=>'required',
             'infos_casier'=>'required',
-            'student_id'=>'required'
         ]);
         //On effectue la correspondance des champs du formulaire avec ceux présents dans la base de données
         $locker->nom_casier=$request->input('nom_casier');
         $locker->etage_casier=$request->input('etage_casier');
         $locker->site_casier=$request->input('site_casier');
         $locker->infos_casier=$request->input('infos_casier');
-        $locker->student_id=$request->input('student_id');
         
         //On effectue la modification
         $locker->update();
         return redirect()->route('lockers.show')->with('statutModification', 'Le casier a été modifié avec succès !');
+
+    }
+
+
+     //Fonction permettant de mettre à jour les champs du dashboard en fonction des modifications entrées dans le formulaire
+    public function updateDashboardLocker(Request $request, $id)
+    {
+        $locker = Locker::find($id);
+
+        $request->validate([
+            'student_id'=>'required'
+        ]);
+        //On effectue la correspondance des champs du formulaire avec ceux présents dans la base de données
+        $locker->student_id=$request->input('student_id');
+        
+        //On effectue la modification
+        $locker->update();
+        return redirect()->route('home')->with('statutModification', 'Le casier a été modifié avec succès !');
 
     }
 
@@ -130,17 +154,5 @@ class ControllerLocker extends Controller
         $locker->delete();
         return redirect()->route('lockers.show')->with('statutSuppression', 'Le casier a été supprimé avec succès !');
     }
-////////////////////////////
 
-
-    //Fonction Permettant d'effectuer une recherche sur l'application
-    //Ne fonctionne pas à l'heure actuelle
-    /* public function searchLocker()
-    {
-  
-        $searchLocker = Request::get('search');
-        $lockers = Locker::where('nom','like','%'.$search.'%')->orderBy('id')->paginate(6);
-        return view('',['lockers' => $lockers]);
-      
-    } */
 }
