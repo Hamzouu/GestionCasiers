@@ -20,6 +20,7 @@ Description de la page :  Cette page est la vue html de la page d'accueil de l'a
                                 <th scope="col">Prénom de l'élève</th>
                                 <th scope="col">Classe de l'élève</th>
                                 <th scope="col">Statut d'attribution</th>
+                                <th scope="col">TEST</th>
                             </tr>
                             {{--Pour chaque casier on affiche les informations suivantes...--}}
                             @foreach ($lockers as $locker)   
@@ -40,7 +41,11 @@ Description de la page :  Cette page est la vue html de la page d'accueil de l'a
                                 <td>{{$locker->student->classe}}</td> 
                                 <td class="alert-success">Attribué</td> 
                             @endif
+                            <td> <a href="{{route('dashboard.FormUpdate', ['id' => $locker -> id])}}">Modifier les infos casier</a>
                             @endforeach
+
+                                {{--Bouton permettant la modification d'un casier--}}
+                               
                     </table>
             {{--Sinon on affiche un message spécifiant qu'il n'y a aucun casier pour le moment--}}
             @else
