@@ -86,16 +86,6 @@ class ControllerLocker extends Controller
          return view('locker/lockerList', compact('allLockers'));
     }  
 
-   /*public function get_all_students()
-    {
-       $students = Student::all();
-       
-       return view('locker/create', [
-        'students' => $students
-        ]);    
-        dd($students);
-    }*/
-
     //Fonction permettant de récupérer l'étudiant à modifier et afficher le formulaire de modification avec les informations actuelles du casier
     public function showUpdateLockerForm($id)
     {
