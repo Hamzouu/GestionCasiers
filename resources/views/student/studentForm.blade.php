@@ -19,7 +19,7 @@ Description de la page :  Cette page est la vue html de la page de création d'u
 @section('content')
     <h1>Ajouter Un élève</h1>
 
-    <form method="POST" action="/addStudent">
+    <form method="POST" action="{{ route('students.store') }}">
     <!-- csrf permet de sécuriser le formulaire -->
     @csrf
     <label for="nom">Nom de l'élève : </label>
@@ -40,6 +40,7 @@ Description de la page :  Cette page est la vue html de la page de création d'u
     {{ $errors->first('classe') }}
     @endif
 <br><br>
-    <button type="submit">Ajouter l'élève</button>
 
+    <button type="submit">Ajouter l'élève</button>
+    
 @endsection
