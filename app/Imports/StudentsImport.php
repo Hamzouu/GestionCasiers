@@ -45,7 +45,6 @@ class StudentsImport implements ToModel
             
             $locker = Locker::create($lockerInfos);
             
-            return $locker;
         }   
     }
 }
