@@ -58,4 +58,16 @@ Description de la page :  Cette page est la vue html de la page contenant la lis
          {{ session('statutCreation') }}
         </div>
         @endif               
+
+        
+    <form method="POST" action="{{ route('excel.import') }}" enctype="multipart/form-data" >
+
+        <!-- CSRF Token -->
+        @csrf
+    
+        <input type="file" name="fichier" accept=".xlsx, .csv, .xls" required >
+    
+        <button type="submit" >Importer</button>
+    
+    </form>
 @endsection

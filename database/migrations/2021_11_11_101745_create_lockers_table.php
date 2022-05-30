@@ -25,7 +25,7 @@ class CreateLockersTable extends Migration
             $table->string('site_casier')->nullable();
             $table->mediumText('infos_casier')->nullable();
             $table->timestamps();
-            $table->foreignId(column:'student_id');
+            $table->foreignId(column:'student_id')->nullable();
 
         });
     }

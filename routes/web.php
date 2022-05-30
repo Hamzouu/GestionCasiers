@@ -73,3 +73,7 @@ Route::get('/delete-locker/{id}', [ControllerLocker::class, 'deleteLocker'])->na
 Route::get('/search-locker', [ControllerLocker::class, 'searchLocker'])->name('locker.search');
 
 
+//IMPORT
+
+//Route pour l'importation d'un fichier CSV
+Route::post("simple-excel/import", [ControllerStudent::class, 'importCSV'])->name('excel.import');
