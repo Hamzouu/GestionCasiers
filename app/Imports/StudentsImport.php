@@ -26,17 +26,26 @@ class StudentsImport implements ToModel
     */
     public function model(array $row)
     {
-        $student = new Student([
-           'nom'    => $row[2],
-           'prenom' => $row[3],
-           'classe' => $row[4],
-        ]);
+        if($row[0] !== 'Etage') {
 
-        dump($student->get());
-        die(); 
-
-        $student->insert();
-
-        return $student;
+            $studentInfos = [
+                'nom'    => $row[2],
+                'prenom' => $row[3],
+                'classe' => $row[4],
+            ];
+            
+            $student = Student::create($studentInfos);
+            
+            $lockerInfos = [
+                'nom_casier' => $row[1],
+                'etage_casier' => $row[0],
+                'site_casier' => 'Sébeillon',
+                'student_id' => $student->id,
+            ];
+            
+            $locker = Locker::create($lockerInfos);
+            
+            return $locker;
+        }   
     }
 }
