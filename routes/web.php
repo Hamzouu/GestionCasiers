@@ -8,7 +8,6 @@
 use App\Http\Controllers\ControllerLocker;
 use App\Http\Controllers\ControllerStudent;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,10 +18,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 // Route de la page d'accueil de l'application
 //Affiche la liste des casiers avec l'étudiant pour lequel le casier est attribué
-Route::get('/', [ControllerLocker::class, 'homeView'])->name('home'); 
+Route::get('/home', [ControllerLocker::class, 'homeView'])->middleware(['guest'])->name('home'); 
 
 
 //Route renvoyant sur une page de formulaire permettant d'y ajouter un élève
@@ -77,3 +75,12 @@ Route::get('/search-locker', [ControllerLocker::class, 'searchLocker'])->name('l
 
 //Route pour l'importation d'un fichier CSV
 Route::post("simple-excel/import", [ControllerStudent::class, 'importCSV'])->name('excel.import');
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';

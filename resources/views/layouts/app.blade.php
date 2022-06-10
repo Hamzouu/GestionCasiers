@@ -21,13 +21,34 @@ Description de la page :  Cette page est le template app.blade.php qui contient 
         {{--Barre de navigation--}}
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                 <li class="nav-item active">  <a class="navbar-brand" href="/"> Accueil</a></li>
+                 <li class="nav-item active">  <a class="navbar-brand" href="/home"> Accueil</a></li>
                 <li class="nav-item active"><a class="navbar-brand" href={{route('students.add')}}>Ajouter élève</a></li>
                 <li class="nav-item active">  <a class="navbar-brand" href="/locker/create">Ajouter un casier</a></li>
                 <li class="nav-item active">  <a class="navbar-brand" href="/all-students">Liste des élèves</a></li>
                 <li class="nav-item active">  <a class="navbar-brand" href="/all-lockers">Liste des casiers</a></li>
-  
             </ul>
+            <!-- Responsive Navigation Menu -->
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+        <!-- Responsive Settings Options -->
+        <div class="pt-4 pb-1 border-t border-gray-200">
+            <div class="px-4">
+                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+            </div>
+
+            <div class="mt-3 space-y-1">
+                <!-- Authentication -->
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <x-responsive-nav-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </x-responsive-nav-link>
+                </form>
+            </div>
+        </div>
             <h1 class="logoGestCas"> GESTION DE CASIERS</h1>
             <input type="text" class="form-control col-md-4 float-left" name="search" id="search" placeholder="Rechercher...">
         </nav>

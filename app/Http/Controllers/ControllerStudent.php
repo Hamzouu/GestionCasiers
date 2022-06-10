@@ -12,6 +12,7 @@ use App\Models\Locker;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\DB;
 
 class ControllerStudent extends Controller
 {
