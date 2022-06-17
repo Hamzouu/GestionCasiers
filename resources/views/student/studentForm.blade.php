@@ -21,7 +21,7 @@ Description de la page :  Cette page est la vue html de la page de création d'u
 
     <form method="POST" action="{{ route('students.store') }}">
     <!-- csrf permet de sécuriser le formulaire -->
-    @csrf
+    
     <label for="nom">Nom de l'élève : </label>
     <input type="text" name="nom" >
     @if($errors->has('nom'))

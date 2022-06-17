@@ -70,7 +70,7 @@ class ControllerStudent extends Controller
         $request->validate([
             'nom'=>'required',
             'prenom'=>'required',
-            'classe'=>'required|'
+            'classe'=>'required'
         ]);
         $student->nom=$request->input('nom');
         $student->prenom=$request->input('prenom');

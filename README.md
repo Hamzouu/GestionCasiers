@@ -1,9 +1,9 @@
 
 Procédure d'installation du projet :
 <br><br>
-git clone "mon repertoire git"
+git clone "https://github.com/Hamzouu/GestionCasiers.git"
 <br>
-cd gestion_casiers_remise_projet/
+cd estionCasiers/
 <br>
 composer install
 <br>

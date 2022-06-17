@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 // Route de la page d'accueil de l'application
 //Affiche la liste des casiers avec l'étudiant pour lequel le casier est attribué
-Route::get('/home', [ControllerLocker::class, 'homeView'])->middleware(['guest'])->name('home'); 
+Route::get('/home', [ControllerLocker::class, 'homeView'])->middleware(['auth'])->name('home'); 
 
 
 //Route renvoyant sur une page de formulaire permettant d'y ajouter un élève
